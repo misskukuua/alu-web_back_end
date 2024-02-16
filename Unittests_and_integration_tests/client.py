@@ -6,7 +6,7 @@ from typing import (
     Dict,
 )
 
-from utils import (
+from Unittests_and_integration_tests.utils import (
     get_json,
     access_nested_map,
     memoize,

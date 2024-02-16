@@ -12,7 +12,7 @@ from unittest.mock import (
 from parameterized import parameterized, parameterized_class
 from requests import HTTPError
 
-from client import (
+from Unittests_and_integration_tests.client import (
     GithubOrgClient
 )
 from fixtures import TEST_PAYLOAD
