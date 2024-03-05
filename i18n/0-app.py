@@ -1,5 +1,10 @@
 #!/usr/bin/env python3
 
+"""
+This is a basic Flask application that returns
+"Hello world" when accessing the root URL ('/').
+"""
+
 # import flask module
 from flask import Flask, render_template
 
@@ -7,7 +12,7 @@ from flask import Flask, render_template
 app = Flask(__name__)
 
 
-"""define the app route"""
+# Define a route for the root URL ('/')
 @app.route('/')
 def index():
     return render_template('0-index.html')
