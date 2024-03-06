@@ -15,7 +15,7 @@ babel = Babel(app)
 """
 
 
-class config:
+class Config:
     # Define available languages
     LANGUAGES = ['en', 'fr']
     # Set default locale and timezone
