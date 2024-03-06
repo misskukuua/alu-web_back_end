@@ -13,6 +13,9 @@ app = Flask(__name__)
 
 
 # Define a route for the root URL ('/')
+
+"""The home/index page.
+"""
 @app.route('/')
 def index():
     return render_template('0-index.html')
