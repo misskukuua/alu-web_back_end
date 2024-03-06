@@ -6,7 +6,7 @@ from flask_babel import Babel
 app = Flask(__name__)
 
 
-#Store babel object in a variable named babel.
+# Store babel object in a variable named babel.
 babel = Babel(app)
 
 
@@ -16,9 +16,9 @@ babel = Babel(app)
 
 
 class config:
-# Define available languages
+    # Define available languages
     LANGUAGES = ['en', 'fr']
-     # Set default locale and timezone
+    # Set default locale and timezone
     BABEL_DEFAULT_LOCALE = 'en'
     BABEL_DEFAULT_TIMEZONE = 'UTC'
 
@@ -38,4 +38,3 @@ def index() -> str:
 
 if __name__ == '__main__':
     app.run(debug=True)
-
