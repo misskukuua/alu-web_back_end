@@ -28,12 +28,13 @@ class Config:
 
 app.config.from_object(Config)
 
+
 def get_locale():
-     """
+    """
     Determine the best match with supported languages
     based on request.accept_languages.
     """
-     return request.accept_languages.best_match
+    return request.accept_languages.best_match
 (app.config['LANGUAGES'])
 
 
