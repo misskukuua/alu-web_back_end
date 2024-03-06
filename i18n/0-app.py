@@ -14,10 +14,11 @@ app = Flask(__name__)
 
 # Define a route for the root URL ('/')
 
-"""The home/index page.
-"""
+
 @app.route('/')
-def index():
+def index() -> str:
+    """The home/index page.
+    """
     return render_template('0-index.html')
 
 
