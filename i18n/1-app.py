@@ -1,5 +1,10 @@
 #!/usr/bin/env python3
 
+"""
+This is a basic Flask application with 
+internationalization support using Flask-Babel.
+"""
+
 from flask import Config, Flask, render_template
 from flask_babel import Babel
 
