@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 """
-This is a basic Flask application with 
+This is a basic Flask application with
 internationalization support using Flask-Babel.
 """
 
@@ -15,12 +15,10 @@ app = Flask(__name__)
 babel = Babel(app)
 
 
-"""" create a Config class with
-     the specified attributes.
-"""
-
-
 class Config:
+    """" create a Config class with
+     the specified attributes.
+    """
     # Define available languages
     LANGUAGES = ['en', 'fr']
     # Set default locale and timezone
