@@ -58,17 +58,14 @@ def index():
 if __name__ == '__main__':
     app.run(debug=True)
 
-def gettext(message):
-    """
-    Translate a message to the current language.
 
-    This function is used to translate messages to the appropriate language based on the current locale.
+# def gettext(message):
+#     """
+#     Translate a message to the current language.
 
-    Parameters:
-        message (str): The message to be translated.
+#     This function is used to translate 
+#     messages to the appropriate language based on the current locale.
 
-    Returns:
-        str: The translated message.
-    """
-    # Actual implementation of translation logic goes here
-    pass
+#     """
+#     # Actual implementation of translation logic goes here
+#     pass
