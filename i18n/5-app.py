@@ -63,7 +63,7 @@ if __name__ == '__main__':
 #     """
 #     Translate a message to the current language.
 
-#     This function is used to translate 
+#     This function is used to translate
 #     messages to the appropriate language based on the current locale.
 
 #     """
