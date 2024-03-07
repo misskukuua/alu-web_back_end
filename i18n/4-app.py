@@ -1,36 +1,24 @@
 #!/usr/bin/env python3
-
-"""
-This is a basic Flask application with
-internationalization support using Flask-Babel.
-"""
+''' Basic Flask app and Babel setup, Get Locale from request
+Parameterized templates, Force locale with URL parameter '''
 
 from flask import Flask, render_template, request
 from flask_babel import Babel
 
-
 app = Flask(__name__)
-
-
-# Instantiate Babel object
 babel = Babel(app)
 
 
 class Config:
-    """
-    Configuration class for the Flask app.
-    """
-    # Define available languages
-    LANGUAGES = ['en', 'fr']
-    # Set default locale and timezone
-    BABEL_DEFAULT_LOCALE = 'en'
-    BABEL_DEFAULT_TIMEZONE = 'UTC'
+    ''' app Config '''
+    LANGUAGES = ["en", "fr"]
+    BABEL_DEFAULT_LOCALE = "en"
+    BABEL_DEFAULT_TIMEZONE = "UTC"
 
 
-# Use Config as config for the Flask app
-app.config.from_object(Config)
+app.config.from_object('4-app.Config')
 
-# Define get_locale function using babel.localeselector decorator
+
 @babel.localeselector
 def get_locale() -> str:
     ''' Determine best match with supported languages '''
@@ -40,13 +28,11 @@ def get_locale() -> str:
     return request.accept_languages.best_match(app.config['LANGUAGES'])
 
 
-@app.route('/')
-def index():
-    """
-    Render the index template.
-    """
+@app.route("/", methods=["GET"], strict_slashes=False)
+def hello_world() -> str:
+    ''' Output templates '''
     return render_template('4-index.html')
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host="0.0.0.0", port="5000")
