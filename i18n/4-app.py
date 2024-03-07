@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 """
-This is a basic Flask application 
+This is a basic Flask application
 with internationalization support using Flask-Babel.
 """
 
@@ -27,7 +27,7 @@ class Config:
     BABEL_DEFAULT_TIMEZONE = 'UTC'
 
 
-    # Use Config as config for the Flask app
+# Use Config as config for the Flask app
 app.config.from_object(Config)
 
 
@@ -35,16 +35,18 @@ app.config.from_object(Config)
 @babel.localeselector
 def get_locale():
     """
-    Determine the best match with supported languages based on request.accept_languages,
+    Determine the best match with supported languages
+    based on request.accept_languages,
     or force a specific locale if specified in the URL parameter.
     """
-    # Check if the 'locale' parameter is present in the URL and if its value is a supported locale
+    # Check if the 'locale' parameter is present in the
+    # URL and if its value is a supported locale
     if 'locale' in request.args and request.args['locale'] in app.config['LANGUAGES']:
         return request.args['locale']
     else:
         # Resort to the default behavior
         return request.accept_languages.best_match(app.config['LANGUAGES'])
-    
+
 
 @app.route('/')
 def index():
