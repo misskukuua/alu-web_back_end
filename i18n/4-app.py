@@ -1,38 +1,59 @@
 #!/usr/bin/env python3
-''' Basic Flask app and Babel setup, Get Locale from request
-Parameterized templates, Force locale with URL parameter '''
+
+"""
+This is a basic Flask application with
+internationalization support using Flask-Babel.
+"""
 
 from flask import Flask, render_template, request
 from flask_babel import Babel
 
+
 app = Flask(__name__)
+
+
+# Instantiate Babel object
 babel = Babel(app)
 
 
 class Config:
-    ''' app Config '''
-    LANGUAGES = ["en", "fr"]
-    BABEL_DEFAULT_LOCALE = "en"
-    BABEL_DEFAULT_TIMEZONE = "UTC"
+    """
+    Configuration class for the Flask app.
+    """
+    # Define available languages
+    LANGUAGES = ['en', 'fr']
+    # Set default locale and timezone
+    BABEL_DEFAULT_LOCALE = 'en'
+    BABEL_DEFAULT_TIMEZONE = 'UTC'
 
 
-app.config.from_object('4-app.Config')
+# Use Config as config for the Flask app
+app.config.from_object(Config)
 
-
+# Define get_locale function using babel.localeselector decorator
 @babel.localeselector
-def get_locale() -> str:
-    ''' Determine best match with supported languages '''
-    locale = request.args.get('locale')
-    if locale and locale in app.config['LANGUAGES']:
-        return locale
-    return request.accept_languages.best_match(app.config['LANGUAGES'])
+def get_locale():
+    """
+    Determine the best match with supported languages
+    based on request.accept_languages,
+    """
+    # Check if the 'locale' parameter is present in the URL
+    # and if its value is a supported locale
+    if 'locale' in request.args and \
+            request.args['locale'] in app.config['LANGUAGES']:
+        return request.args['locale']
+    else:
+        # Resort to the default behavior
+        return request.accept_languages.best_match(app.config['LANGUAGES'])
 
 
-@app.route("/", methods=["GET"], strict_slashes=False)
-def hello_world() -> str:
-    ''' Output templates '''
+@app.route('/')
+def index():
+    """
+    Render the index template.
+    """
     return render_template('4-index.html')
 
 
 if __name__ == '__main__':
-    app.run(host="0.0.0.0", port="5000")
+    app.run(debug=True)
