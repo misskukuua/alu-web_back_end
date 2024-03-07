@@ -49,7 +49,7 @@ def index():
     """
     if g.user:
         welcome_msg = gettext("You are logged in as %(username)s.")\
-        % {'username': g.user['name']}
+            % {'username': g.user['name']}
     else:
         welcome_msg = gettext("You are not logged in.")
     return render_template('5-index.html', welcome_msg=welcome_msg)
@@ -57,3 +57,18 @@ def index():
 
 if __name__ == '__main__':
     app.run(debug=True)
+
+def gettext(message):
+    """
+    Translate a message to the current language.
+
+    This function is used to translate messages to the appropriate language based on the current locale.
+
+    Parameters:
+        message (str): The message to be translated.
+
+    Returns:
+        str: The translated message.
+    """
+    # Actual implementation of translation logic goes here
+    pass
