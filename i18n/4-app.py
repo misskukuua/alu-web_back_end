@@ -41,7 +41,8 @@ def get_locale():
     """
     # Check if the 'locale' parameter is present in the
     # URL and if its value is a supported locale
-    if 'locale' in request.args and request.args['locale'] in app.config['LANGUAGES']:
+    if 'locale' in request.args and request.args
+        ['locale'] in app.config['LANGUAGES']:
         return request.args['locale']
     else:
         # Resort to the default behavior
