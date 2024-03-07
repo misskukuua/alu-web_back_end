@@ -16,26 +16,6 @@ app = Flask(__name__)
 babel = Babel(app)
 
 
-# Define get_locale function using babel.localeselector decorator
-def get_locale():
-    """
-    Determine the best match with supported languages
-    based on request.accept_languages,
-    """
-    # Check if the 'locale' parameter is present in the URL
-    # and if its value is a supported locale
-    if 'locale' in request.args and \
-            request.args['locale'] in app.config['LANGUAGES']:
-        return request.args['locale']
-    else:
-        # Resort to the default behavior
-        return request.accept_languages.best_match(app.config['LANGUAGES'])
-
-
-# Initialize Babel extension using babel.init_app
-babel.init_app(app, locale_selector=get_locale)
-
-
 class Config:
     """
     Configuration class for the Flask app.
@@ -49,6 +29,22 @@ class Config:
 
 # Use Config as config for the Flask app
 app.config.from_object(Config)
+
+# Define get_locale function using babel.localeselector decorator
+@babel.localeselector
+def get_locale():
+    """
+    Determine the best match with supported languages
+    based on request.accept_languages,
+    """
+    # Check if the 'locale' parameter is present in the URL
+    # and if its value is a supported locale
+    if 'locale' in request.args and \
+            request.args['locale'] in app.config['LANGUAGES']:
+        return request.args['locale']
+    else:
+        # Resort to the default behavior
+        return request.accept_languages.best_match(app.config['LANGUAGES'])
 
 
 @app.route('/')
