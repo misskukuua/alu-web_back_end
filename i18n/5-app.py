@@ -1,5 +1,11 @@
 #!/usr/bin/env python3
 
+"""
+This is a basic Flask application with
+internationalization support using Flask-Babel.
+"""
+
+
 from flask import Flask, render_template, g, request
 from flask_babel import Babel, gettext
 
@@ -14,11 +20,13 @@ users = {
     4: {"name": "Teletubby", "locale": None, "timezone": "Europe/London"},
 }
 
+
 def get_user(user_id):
     """
     Retrieve user from the mocked user table by user ID.
     """
     return users.get(user_id)
+
 
 @app.before_request
 def before_request():
@@ -32,6 +40,7 @@ def before_request():
     else:
         g.user = None
 
+
 @app.route('/')
 def index():
     """
@@ -39,10 +48,12 @@ def index():
     appropriate welcome message based on login status.
     """
     if g.user:
-        welcome_msg = gettext("You are logged in as %(username)s.") % {'username': g.user['name']}
+        welcome_msg = gettext("You are logged in as %(username)s.")\
+        % {'username': g.user['name']}
     else:
         welcome_msg = gettext("You are not logged in.")
     return render_template('5-index.html', welcome_msg=welcome_msg)
+
 
 if __name__ == '__main__':
     app.run(debug=True)
