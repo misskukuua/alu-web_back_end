@@ -32,19 +32,12 @@ app.config.from_object(Config)
 
 # Define get_locale function using babel.localeselector decorator
 @babel.localeselector
-def get_locale():
-    """
-    Determine the best match with supported languages
-    based on request.accept_languages,
-    """
-    # Check if the 'locale' parameter is present in the URL
-    # and if its value is a supported locale
-    if 'locale' in request.args and \
-            request.args['locale'] in app.config['LANGUAGES']:
-        return request.args['locale']
-    else:
-        # Resort to the default behavior
-        return request.accept_languages.best_match(app.config['LANGUAGES'])
+def get_locale() -> str:
+    ''' Determine best match with supported languages '''
+    locale = request.args.get('locale')
+    if locale and locale in app.config['LANGUAGES']:
+        return locale
+    return request.accept_languages.best_match(app.config['LANGUAGES'])
 
 
 @app.route('/')
