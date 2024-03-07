@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 
 """
-This is a basic Flask application
-with internationalization support using Flask-Babel.
+This is a basic Flask application with
+internationalization support using Flask-Babel.
 """
 
 from flask import Flask, render_template, request
@@ -30,22 +30,20 @@ class Config:
 # Use Config as config for the Flask app
 app.config.from_object(Config)
 
-
 # Define get_locale function using babel.localeselector decorator
 @babel.localeselector
-def get_locale():
+def get_locale() -> str:
+    """Retrieves the locale for a web page.
     """
-    Determine the best match with supported languages
-    based on request.accept_languages,
-    """
-    # Check if the 'locale' parameter is present in the URL
-    # and if its value is a supported locale
-    if 'locale' in request.args and \
-            request.args['locale'] in app.config['LANGUAGES']:
-        return request.args['locale']
-    else:
-        # Resort to the default behavior
-        return request.accept_languages.best_match(app.config['LANGUAGES'])
+    queries = request.query_string.decode('utf-8').split('&')
+    query_table = dict(map(
+        lambda x: (x if '=' in x else '{}='.format(x)).split('='),
+        queries,
+    ))
+    if 'locale' in query_table:
+        if query_table['locale'] in app.config["LANGUAGES"]:
+            return query_table['locale']
+    return request.accept_languages.best_match(app.config["LANGUAGES"])
 
 
 @app.route('/')
