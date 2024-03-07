@@ -2,13 +2,10 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>User Login</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Login System</title>
 </head>
 <body>
-    {% if user %}
-        <p>{{ _('You are logged in as %(username)s.', username=user['name']) }}</p>
-    {% else %}
-        <p>{{ _('You are not logged in.') }}</p>
-    {% endif %}
+    <p>{{ welcome_msg }}</p>
 </body>
 </html>
