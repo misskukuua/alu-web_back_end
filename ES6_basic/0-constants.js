@@ -1,5 +1,5 @@
 export function taskFirst() {
-    const task = 'I prefer const when I can.'; // Changed var to const
+    var task = 'I prefer const when I can.'; // Changed var to const
     return task;
   }
   
