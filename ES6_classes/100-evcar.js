@@ -10,7 +10,12 @@ class EVCar extends Car {
   }
 
   cloneCar() {
-    const { _brand, _motor, _color, _range } = this;
+    const {
+      _brand,
+      _motor,
+      _color,
+      _range
+    } = this;
     const clonedCar = new Car();
     clonedCar._brand = _brand;
     clonedCar._motor = _motor;
