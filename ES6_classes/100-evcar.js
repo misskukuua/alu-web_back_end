@@ -14,7 +14,7 @@ class EVCar extends Car {
       _brand,
       _motor,
       _color,
-      _range
+      _range,
     } = this;
     const clonedCar = new Car();
     clonedCar._brand = _brand;
