@@ -1,22 +1,8 @@
-function calculateNumber(operation, a, b) {
-  const roundedA = Math.round(a);
-  const roundedB = Math.round(b);
-  
-  switch (operation) {
-      case 'SUM':
-          return roundedA + roundedB;
-      case 'SUBTRACT':
-          return roundedA - roundedB;
-      case 'DIVIDE':
-          if (roundedB === 0) {
-              return 'Error';
-          }
-          return roundedA / roundedB;
-      case 'SECOND_NUMBER_ROUNDED':
-          return roundedB;
-      default:
-          throw new Error('Invalid operation');
-  }
-}
+module.exports = function calculateNumber (a, b = 0) {
+  const aNum = Number(a);
+  const bNum = Number(b);
 
-module.exports = calculateNumber;
+  if (Number.isNaN(aNum) || Number.isNaN(bNum)) { throw TypeError('Parameters must be numbers'); }
+
+  return Math.round(aNum) + Math.round(bNum);
+};
